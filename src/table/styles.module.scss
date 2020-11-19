@@ -1,0 +1,131 @@
+.tableWrapper {
+  background-color: var(--color-white);
+}
+
+.table {
+  background-color: #fff;
+  border-collapse: collapse;
+
+  empty-cells: show;
+  empty-cells: -moz-show-background;
+  white-space: nowrap;
+
+  display: grid;
+  grid-template-columns: var(--columns);
+
+  // Horizontal scrolling
+  max-width: 100%;
+  overflow-y: auto;
+
+  tbody,
+  thead,
+  tr {
+    display: contents;
+  }
+  th,
+  td {
+    padding: 10px;
+  }
+}
+
+.thead {
+  // Override the tr border from within the thead.
+  > tr > th {
+    border-bottom: 2px solid #ddd;
+    background-color: #f9f9f9;
+    font-weight: 700;
+    text-align: left;
+    position: sticky !important;
+    top: 0;
+  }
+
+  /* Headers */
+  .headerHover {
+    &:hover {
+      border-color: #eee;
+    }
+  }
+}
+
+.tbody {
+  > tr > td {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.tr {
+  border-bottom: 1px solid #aaa;
+  &.clickable:hover > td,
+  &.clickable:focus-within > td {
+    background: #f9f9f9;
+    cursor: pointer;
+  }
+}
+
+.th {
+  padding: 10px;
+  &.clickable {
+    padding-right: 30px; // make space for arrow
+    &:hover,
+    &:focus {
+      background: #eee;
+      cursor: pointer;
+      user-select: none;
+    }
+    &.asc,
+    &.desc {
+      background: #ddd;
+      position: relative;
+
+      &::after {
+        content: "";
+        display: block;
+        --arrowSize: 0.3em;
+
+        width: 0;
+        height: 0;
+        border-left: var(--arrowSize) solid transparent;
+        border-right: var(--arrowSize) solid transparent;
+        border-top: var(--arrowSize) solid #aaa;
+
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translate(0px, -50%);
+      }
+    }
+    &.desc::after {
+      transform: translate(0px, -50%) rotate(180deg);
+    }
+  }
+}
+
+.skeletonRow > td {
+}
+
+// Override default caption rules
+.caption {
+  display: block;
+  text-align: left;
+}
+
+.cell {
+  padding: 10px;
+  &.ellipsis {
+    overflow-x: hidden;
+    word-break: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    > div,
+    > span {
+      overflow-x: hidden;
+      word-break: break-word;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  &.fullWidth {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+}
