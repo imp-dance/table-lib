@@ -37,6 +37,7 @@
     text-align: left;
     position: sticky !important;
     top: 0;
+    z-index: 100;
   }
 
   /* Headers */
@@ -98,9 +99,6 @@
       transform: translate(0px, -50%) rotate(180deg);
     }
   }
-}
-
-.skeletonRow > td {
 }
 
 // Override default caption rules

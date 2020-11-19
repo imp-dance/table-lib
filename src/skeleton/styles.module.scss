@@ -1,0 +1,50 @@
+.skeleton {
+  display: inline-block;
+  --color-1: #eee;
+  --color-2: #ddd;
+  --color-3: #efefef;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-1),
+    var(--color-2),
+    var(--color-3)
+  );
+  background-size: 200% 2em;
+  animation: skeleton-slide 2s infinite forwards linear;
+  border-radius: 20px;
+}
+
+.bar {
+  height: 2rem;
+  max-height: 10px;
+}
+
+@keyframes skeleton-slide {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: -100% 0%;
+  }
+
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+td {
+  animation: fadeIn 0.2s ease-in-out;
+  animation-fill-mode: both;
+  animation-delay: calc(var(--i) * 0.03s);
+  @keyframes fadeIn {
+    from {
+      opacity: 0.5;
+      transform: translate(0px, 2px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0px, 0px);
+    }
+  }
+}

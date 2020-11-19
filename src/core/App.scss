@@ -1,0 +1,70 @@
+.App {
+  max-width: clamp(200px, 80%, 800px);
+  margin: 10vh auto;
+}
+
+.tableContainer {
+  position: relative;
+  margin: 2rem 0 0;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, #fff, rgba(0, 0, 0, 0));
+    pointer-events: none;
+  }
+}
+
+.table {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+tr > td:nth-child(2) strong {
+  display: inline-block;
+  position: relative;
+  overflow-x: hidden;
+  word-break: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  &:after {
+    content: "";
+    height: 2px;
+    background: linear-gradient(to right, #000 85%, rgba(0, 0, 0, 0) 95%);
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    left: 0;
+    transform: scaleX(0) translate(0px, -50%);
+    transform-origin: right;
+  }
+}
+.checked > td:nth-child(2) strong:after {
+  transition: all 0.2s ease-in-out;
+  transform: scaleX(1) translate(0px, -50%);
+}
+
+.checkCell {
+  text-align: center;
+  > i {
+    transition: all 0.4s cubic-bezier(0.62, 0.01, 0.35, 1.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgb(230, 202, 202);
+    text-decoration: none !important;
+    border-radius: 50%;
+  }
+}
+
+.checked .checkCell > i {
+  background: rgb(202, 230, 202);
+  transform: rotate(1turn);
+}

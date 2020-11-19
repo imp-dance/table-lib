@@ -26,7 +26,10 @@ type TReturn = [Array<any> | null, React.FC<TTh>];
 const initialAbortController = new AbortController();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useSortTable = (list: Array<any> | null): TReturn => {
+const useSortTable = (
+  list: Array<any> | null,
+  defaultSort?: (a: any, b: any) => number
+): TReturn => {
   const [sortMethod, setSortMethod] = useState<TSortMethod>(null);
   const [sortedItems, setSortedItems] = useState(list);
   const [currentSort, setCurrentSort] = useState("");
@@ -70,7 +73,12 @@ const useSortTable = (list: Array<any> | null): TReturn => {
       } else if (nextSortMethod === "DESC") {
         setSortedItems(sortedItems.reverse());
       } else if (nextSortMethod === null) {
-        setSortedItems(list);
+        if (defaultSort) {
+          const sortedItems = [...list].sort(defaultSort);
+          setSortedItems(sortedItems);
+        } else {
+          setSortedItems(list);
+        }
       }
       setSortMethod(nextSortMethod);
       setCurrentSort(key);
@@ -125,6 +133,7 @@ const useSortTable = (list: Array<any> | null): TReturn => {
     return () => {
       abortController.abort();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
 
   if (!list) {

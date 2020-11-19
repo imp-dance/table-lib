@@ -2,10 +2,7 @@ import React from "react";
 import TableRow from "./TableRow";
 import TableCell from "./BodyCell";
 import getUniqueId from "lodash.uniqueid";
-
-const SkeletonBar = () => {
-  return <div>loading</div>;
-};
+import SkeletonBar from "../skeleton/Bar";
 
 const TableSkeletonRow: React.FC<{ cols: number }> = ({ cols }) => {
   const tableCols = [];

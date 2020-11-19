@@ -8,6 +8,7 @@ type RowProps = {
   className?: string;
   clickable?: boolean;
   label?: string;
+  style?: React.CSSProperties;
   onClick?: () => void;
 };
 
@@ -16,6 +17,7 @@ const Row: React.FC<RowProps> = ({
   children,
   clickable,
   label,
+  style,
   onClick,
 }) => {
   const rowStyles = classNames(styles.tr, className, {
@@ -35,6 +37,7 @@ const Row: React.FC<RowProps> = ({
           }
         }
       }}
+      style={style}
     >
       {children}
     </tr>
