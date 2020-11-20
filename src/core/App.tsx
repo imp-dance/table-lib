@@ -50,7 +50,7 @@ export default function App() {
       </p>
       <div className="tableContainer">
         <Table
-          className="table"
+          className="__table"
           colSizes={[1, 10, 1]}
           loading={loading}
           loadingRows={50}
@@ -58,7 +58,7 @@ export default function App() {
           <Table.Header>
             <Table.Row
               onClick={() => {
-                const el = document.querySelector(".table");
+                const el = document.querySelector(".__table");
                 if (el) {
                   el.scrollTop = 0;
                 }
@@ -68,11 +68,7 @@ export default function App() {
               <Th objectKey="title">Title</Th>
               <Th
                 objectKey="completed"
-                sortFunc={() => {
-                  return (a, b) => {
-                    return a.completed ? -1 : 1;
-                  };
-                }}
+                sortFunc={(k) => (a) => (a[k] ? -1 : 1)}
               >
                 Completed
               </Th>

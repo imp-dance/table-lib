@@ -19,7 +19,7 @@
   }
 }
 
-.table {
+.__table {
   max-height: 70vh;
   overflow-y: auto;
 }
@@ -35,7 +35,7 @@ tr > td:nth-child(2) strong {
   &:after {
     content: "";
     height: 2px;
-    background: linear-gradient(to right, #000 85%, rgba(0, 0, 0, 0) 95%);
+    background: linear-gradient(to right, #0000009e 85%, rgba(0, 0, 0, 0) 95%);
     position: absolute;
     top: 50%;
     width: 100%;
@@ -67,4 +67,9 @@ tr > td:nth-child(2) strong {
 .checked .checkCell > i {
   background: rgb(202, 230, 202);
   transform: rotate(1turn);
+}
+
+td {
+  content-visibility: auto;
+  contain-intrinsic-size: 30px;
 }
