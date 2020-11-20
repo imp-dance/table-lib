@@ -2,6 +2,8 @@
 
 This package hasn't been published yet and is in progress.
 
+![Preview of table component](https://haakon.dev/files/img/impedans-table.png)
+
 ## Usage
 
 ```tsx
