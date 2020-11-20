@@ -30,23 +30,28 @@ const BodyCell: React.FC<CellProps> = (props) => {
     [styles.ellipsis]: ellipsis,
     [styles.fullWidth]: fullWidth,
   });
-  return (
-    <td
-      className={cellStyles}
-      style={style}
-      tabIndex={focusable ? 0 : undefined}
-      onClick={onClick}
-      onKeyDown={
-        focusable
-          ? (e: React.KeyboardEvent) => {
-              if (e.key === " " || e.key === "Enter") {
-                onClick && onClick();
-              }
-              onKeyDown && onKeyDown(e);
-            }
-          : onKeyDown
+
+  const keyDownWrapper = (e: React.KeyboardEvent) => {
+    if (focusable) {
+      if (e.key === " " || e.key === "Enter") {
+        onClick && onClick();
       }
-    >
+      onKeyDown && onKeyDown(e);
+    } else {
+      onKeyDown && onKeyDown(e);
+    }
+  };
+
+  const tdProps = {
+    className: cellStyles,
+    onKeyDown: keyDownWrapper,
+    tabIndex: focusable ? 0 : undefined,
+    style,
+    onClick,
+  };
+
+  return (
+    <td {...tdProps}>
       {ellipsis && (
         <span title={title || children?.toString()}>{children}</span>
       )}

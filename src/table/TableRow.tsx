@@ -24,24 +24,24 @@ const Row: React.FC<RowProps> = ({
     [styles.clickable]: clickable,
   });
 
-  return (
-    <tr
-      className={rowStyles}
-      aria-label={label}
-      onClick={onClick}
-      tabIndex={clickable ? 0 : undefined}
-      onKeyDown={(e: React.KeyboardEvent) => {
-        if (clickable) {
-          if (e.key === " " || e.key === "Enter") {
-            onClick && onClick();
-          }
-        }
-      }}
-      style={style}
-    >
-      {children}
-    </tr>
-  );
+  const keyDownWrapper = (e: React.KeyboardEvent) => {
+    if (clickable) {
+      if (e.key === " " || e.key === "Enter") {
+        onClick && onClick();
+      }
+    }
+  };
+
+  const props = {
+    className: rowStyles,
+    tabIndex: clickable ? 0 : undefined,
+    "aria-label": label,
+    onKeyDown: keyDownWrapper,
+    onClick,
+    style,
+  };
+
+  return <tr {...props}>{children}</tr>;
 };
 
 export default Row;

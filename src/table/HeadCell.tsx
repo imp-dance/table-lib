@@ -22,30 +22,26 @@ const HeadCell: React.FC<CellProps> = ({
   const cellStyles = classNames(styles.th, className, {
     [styles.clickable]: clickable,
   });
+
+  const keyDownWrapper = (e: React.KeyboardEvent) => {
+    if (clickable) {
+      if (e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        onClick && onClick();
+      }
+    } else {
+      onKeyDown && onKeyDown(e);
+    }
+  };
+
   const props = {
     className: cellStyles,
+    onKeyDown: keyDownWrapper,
     onClick,
-    onKeyDown,
     tabIndex,
   };
-  return (
-    <th
-      {...props}
-      onKeyDown={
-        clickable
-          ? (e: React.KeyboardEvent) => {
-              if (e.key === " " || e.key === "Enter") {
-                e.preventDefault();
-                onClick && onClick();
-              }
-              onKeyDown && onKeyDown(e);
-            }
-          : onKeyDown
-      }
-    >
-      {children}
-    </th>
-  );
+
+  return <th {...props}>{children}</th>;
 };
 
 export default HeadCell;

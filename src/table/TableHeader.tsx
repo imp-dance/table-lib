@@ -4,17 +4,12 @@ import classNames from "classnames";
 
 type HeaderProps = {
   className?: string;
-  key?: string;
   onClick?: Function;
 };
-const Header: React.FC<HeaderProps> = ({ className, key, children }) => {
+const Header: React.FC<HeaderProps> = ({ className, children }) => {
   const headerStyles = classNames(styles.thead, className);
 
-  return (
-    <thead className={headerStyles} key={key}>
-      {children}
-    </thead>
-  );
+  return <thead className={headerStyles}>{children}</thead>;
 };
 
 export default Header;
